@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complex Website</title>
+
+  <!-- CSS -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #2c3e50;
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      margin: 0 20px;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: #f39c12;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: url('https://picsum.photos/1600/900') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    #about {
+      background: #ecf0f1;
+    }
+
+    #services {
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 250px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+
+    #contact {
+      background: #ecf0f1;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, textarea {
+      margin: 10px 0;
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background: #2c3e50;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #34495e;
+    }
+
+    /* Footer */
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- jQuery Script -->
+  <script>
+    $(document).ready(function(){
+
+      // Smooth scroll for navbar links
+      $(".navbar a").on("click", function(e){
+        if(this.hash !== ""){
+          e.preventDefault();
+          const hash = this.hash;
+          $("html, body").animate({
+            scrollTop: $(hash).offset().top - 50
+          }, 800);
+        }
+      });
+
+      // Form validation
+      $("form").submit(function(e){
+        e.preventDefault();
+        let name = $("#name").val().trim();
+        let email = $("#email").val().trim();
+        let message = $("#message").val().trim();
+
+        if(name === "" || email === "" || message === ""){
+          alert("⚠️ All fields are required!");
+        } else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+          alert("⚠️ Please enter a valid email address.");
+        } else {
+          alert("✅ Form submitted successfully!");
+          $(this).trigger("reset");
+        }
+      });
+
+    });
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero" id="hero">
+    <h1>Welcome to My Complex Website</h1>
+    <p>Built with HTML, CSS, and jQuery 🚀</p>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>This is a demo complex website layout built with simple frontend technologies. It includes smooth scrolling, hover effects, and form validation using jQuery.</p>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="service-card">
+      <h3>🌐 Web Development</h3>
+      <p>Modern and responsive websites using latest technologies.</p>
+    </div>
+    <div class="service-card">
+      <h3>⚙️ DevOps</h3>
+      <p>CI/CD pipelines, cloud automation, and containerization.</p>
+    </div>
+    <div class="service-card">
+      <h3>📊 Data Solutions</h3>
+      <p>ETL, data pipelines, and business intelligence dashboards.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" id="name" placeholder="Your Name">
+      <input type="email" id="email" placeholder="Your Email">
+      <textarea id="message" rows="4" placeholder="Your Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 My Complex Website. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
